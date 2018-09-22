@@ -1,33 +1,48 @@
 #include <iostream>
-#include <sstream>
-#include <random>
 #include <algorithm>
-#include <functional>
-#include <limits>
+#include <iterator>
 #include "fun.h"
+using std::cout;
+using std::endl;
+using std::vector;
+	typedef bool (*MinCompare)( const void *a, const void *b );//pra q isso msm?
+	void printV(void *first, void *last, size_t size)
+	{														//Imprime o vetor
+		const byte *it = static_cast<byte>(first);
+		it+=size;
+		for(it=first ; it!=last ; it+size)
+		{
+			cout<<*it<<' ';
+		}
+		cout<<endl;
+	}
+	void criaV(void *first, int tam)
+	{														//Cria o Vetor int
+		srand(time(NULL));
+		vector<int> v;
+		vector<int>::const_interator it;
+		
+		for(it = v.begin() ; it! = tam ; it++)
+		{
+			v.pushback(rand() % 50) ;
+		}
+	}
+	void *min(void *first, void *last, size_t size , compare cmp)
+	{
+		//convertendo para poder usar aritimética de ponteiros
+		const byte *it = static_cast <byte*> (first);
 
-std::size_t compacta( int * V_, std::size_t count_ )
-{
-    auto iSlow(0ul);
-    auto iFast(0ul);
-    for( /* empty */ ; iFast < count_ ; ++iFast )
-    {
-        if( V_[ iFast ] > 0 )
-            V_[ iSlow++ ] = V_[ iFast ];
-    }
+		it+=size;//PQ NÃO APENAS it=size?
+		const byte *menor = it;
+		while(it != last)
+		{
+			if(cmp(it , menor))
+			{
+				menor = it;
+			}
+			it+=size;
+		}
+		return menor;
+	}
 
-    return iSlow; // New vector size.
-}
-
-void randomFill( int *V_, std::size_t arrSz_,
-                 const int lower_, const int upper_,
-                 const unsigned int seed_ )
-{
-    //use the default random engine and an uniform distribution
-    std::default_random_engine eng( seed_ );
-    std::uniform_real_distribution<double> distr( lower_, upper_ );
-
-    // Fill up vector
-    for ( auto i(0) ; i < arrSz_ ; ++i )
-        V_[ i ] = distr( eng );
-}
+	

@@ -1,9 +1,10 @@
 #ifndef FUN_H
 #define FUN_H
 
-void randomFill( int *V_, std::size_t arrSz_,
-	   	const int lower_, const int upper_,
-		const unsigned int seed_ );
+typedef bool (*Compare)( const void *a, const void *b);//devo definir isso aqui tmb?
+void *min(int *first , int *last , size_t size , compare cmp );
+	
 
-std::size_t compacta( int * V_, std::size_t count_ );
-#endif  
+
+
+#endif
