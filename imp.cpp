@@ -2,47 +2,202 @@
 #include <algorithm>
 #include <iterator>
 #include "fun.h"
-using std::cout;
-using std::endl;
-using std::vector;
-	typedef bool (*MinCompare)( const void *a, const void *b );//pra q isso msm?
-	void printV(void *first, void *last, size_t size)
-	{														//Imprime o vetor
-		const byte *it = static_cast<byte>(first);
-		it+=size;
-		for(it=first ; it!=last ; it+size)
-		{
-			cout<<*it<<' ';
-		}
-		cout<<endl;
-	}
-	void criaV(void *first, int tam)
-	{														//Cria o Vetor int
-		srand(time(NULL));
-		vector<int> v;
-		vector<int>::const_interator it;
-		
-		for(it = v.begin() ; it! = tam ; it++)
-		{
-			v.pushback(rand() % 50) ;
-		}
-	}
-	void *min(void *first, void *last, size_t size , compare cmp)
+
+void printVetor(void *first, void *last, size_t size)
+{														//Imprime o vetor
+	const byte *it = static_cast <const byte*> (first);
+	it+=size;
+	for(it=first ; it!=last ; it+size)
 	{
-		//convertendo para poder usar aritimética de ponteiros
-		const byte *it = static_cast <byte*> (first);
+		cout<<*it<<' ';
+	}
+	cout<<endl;
+}
 
-		it+=size;//PQ NÃO APENAS it=size?
-		const byte *menor = it;
-		while(it != last)
+void criarVetorAleatorio(void *first, size_t size , int tam)
+{
+	srand(time(NULL));												//Cria o Vetor int, Sabosta funciona?
+	const byte *it = static_cast <byte>(first);
+
+	while(it != tam)
+	{
+		first[it] = srand() % 50; //pode isso?
+		it+=size;
+	}
+}
+
+
+//Questão 1
+void  *min(void *first, void *last, size_t size , compare cmp)
+{
+	//convertendo para poder usar aritimética de ponteiros
+	const byte *it = static_cast <const byte*> (first);
+
+	it+=size;
+	byte *menor = it;
+	while(it != last)
+	{
+		if(cmp(it , menor))
 		{
-			if(cmp(it , menor))
-			{
-				menor = it;
-			}
-			it+=size;
+			menor = it;
 		}
-		return menor;
+		it+=size;
+	}
+	return menor;
+}
+
+
+//Questão 2
+void reverse(void *first,void *last,size_t size)
+{
+	const byte *it = static_cast <const byte*> (first);
+		last--;
+	for(  ; it<=last; it+size,last--)
+	{
+			std::swap(*it, *last);
+	}
+}
+
+
+//Questão 3
+void *copy(const void *firstA, const void *lastA , const void *firstB , size_t size)
+	{	
+	 	byte k= std::distance(static_cast <byte*> (firstA), static_cast <byte*> (lastA) ;//??
+		byte *i = static_cast <byte*> (firstA);
+		byte *j = static_cast <byte*> (firstB);
+		for( ; i !=lastA ; i+size , j+size)
+		{
+			*j=*i;
+
+		}
+		/*while(i != lastA)
+		{
+			j*=*i;
+			i+=size; 
+			j+=size;
+
+		}*/
+
+		return static_cast <byte*> (firstB)+k;//?
 	}
 
+
+//Questão 4
+//////////////////////////////////////////
+
+
+//Questão 5
+const void *find_if(const void *first,const void *last,size_t size,Predicate p )
+{
+	byte *it = static_cast <byte*>(first);
+	while(it != last)
+	{
+		if(  p(*it)  )
+		{
+			return it;
+		}
+		it+=size;
+	}
+	return it;
+}
+
+
+//Questão 6
+const void *find(const void *first , const void *last , size_t size , const void *value , Equal eq)
+{
+	byte *it = static_cast<byte*>(first);
+	while(it != last)
+	{
+		if(eq(*it,*value))
+		{
+			return it;
+		}
+		it+=size;
+	}
+	return it;
+}
+
+
+//Questão 7
+bool all_of(const void *first , const void *last , size_t size,Predicate p)
+{
+	byte *it = static_cast <byte*>(first);
+	while(it != last)
+	{
+		if(  !(p(*it))  )
+		{
+			return false
+		}
+		it+=size;
+	}
+	return true;
+}
+bool any_of(const void *first , const void *last , size_t size , Predicate p)
+{
+	byte *it = static_cast <byte*>(first);
+	while(it != last)
+	{
+		if(  p(*it)  )
+		{
+			return true
+		}
+		it+=size;
+	}
+	return false;
+}
+}
+bool none_of(const void *first , const void *last , size_t size ,  Predicate p )
+{
+	byte *it = static_cast <byte*>(first);
+	while(it != last)
+	{
+		if(  p(*it)  )
+		{
+			return false
+		}
+		it+=size;
+	}
+	return true;
+}
+
+
+//Questão 8
+bool equal(const void *first , const void *last ,void *first2, size_t size , Equal eq)
+{
+	byte *it = static_cast<byte*>(first);
+	byte *it2 = static_cast<byte*>(first2);
+	while(it != last)
+	{
+		if(!(eq(*it,*it2))
+		{
+			return false
+		}
+		it+=size;
+		it2+=size;
+	}
+	return true;
+}
+
+bool equal(const void *first , const void *last ,void *first2, void *last2, size_t size , Equal eq)
+{
+	byte *it = static_cast<byte*>(first);
+	byte *it2 = static_cast<byte*>(first2);
+	while(it != last or it2!=last2)
+	{
+		if(!(eq(*it,*it2))
+		{
+			return false
+		}
+		it+=size;
+		it2+=size;
+	}
+	return true;
+}
+
+
+//Questão 9 //?
+void *unique(const void *first , const void *last , size_t size , Equal eq)
+{
 	
+}
+
