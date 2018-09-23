@@ -1,10 +1,12 @@
 #ifndef FUN_H
 #define FUN_H
 
-typedef bool (*Compare)( const void *a, const void *b);//devo definir isso aqui tmb?
-void *min(int *first , int *last , size_t size , compare cmp );
-	
+// Ponteiro generico
+typedef void * ponteiroGenerico;
 
+// Ponteiro para função
+typedef bool (*Compare)(const ponteiroGenerico a, const ponteiroGenerico b);
 
+void min(ponteiroGenerico first, ponteiroGenerico last, size_t size, Compare cmp);
 
-#endif
+#endif /* FUN_H */

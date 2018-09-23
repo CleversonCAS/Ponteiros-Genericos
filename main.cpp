@@ -1,26 +1,26 @@
 #include <iostream>
 #include <iterator>
-#include <sctring>
-#include <ctime>//rand
+#include <string>
+#include <ctime> //rand
+#include <vector>
 #include "fun.h"
-using std::cout;
-using std::endl;
-using std::begin;
-using std::end;
-using std::vector;
-	bool menor(void *a , void *b)
-	{
-		return static_cast<int *>(a) < static_cast<int *>(b);
-	}
+//#include "imp.cpp"
+
+bool menor(ponteiroGenerico a , ponteiroGenerico b)
+{
+	return static_cast<int *>(a) < static_cast<int *>(b);
+}
+
 int main()
 {	
-	vector<int> v;
-	criaV(begin(v) , 10)//Criando vetor aleatório
-	cout<<"Vetor: "
-	printV(begin(v) , end(v) , sizeof(int);)
-	auto menor = min(begin(v) , end(v) , sizeof(int) , menor);
-	cout<<"Menor elemento do vetor é: "<< *menor <<endl;
+	std::vector<int> vetor;
+	//Criando vetor aleatório
+	criarVetorAleatorio(vetor.begin() , 10)
 
+	std::cout << "Vetor: ";
+	printVetor(begin(v) , end(v) , sizeof(int));
+	auto menor = min(vetor.begin() , vetor.end() , sizeof(int) , menor);
+	std::cout << "Menor elemento do vetor é: " << *menor << std::endl;
 
 	return 0;
 }
