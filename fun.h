@@ -2,13 +2,14 @@
 #define FUN_H
 
 #include <cstdlib>
-typedef unsigned char byte;
+typedef char byte;
 typedef bool(*Compare)(const void *, const void *);
 typedef bool(*Predicate)(const void *);
 typedef bool(*Equal)(const void *, const void *);
 
 
 //void criarVetorAleatorio(void *first, size_t size , int tam);
+void printEspaco(int a);
 
 void printVetor(int *first, int *last);
 //Q1
@@ -18,13 +19,12 @@ const void *min(void *first, void *last, size_t size, Compare cmp);
 void reverse(void *first,void *last,size_t size);
 
 //Q3
-/*void *copy(const void *firstA, const void *lastA , const void *firstB , size_t size);
+const void *copy(  void *firstA,   void *lastA ,  void *firstB , size_t size);
 
 //Q4
-
 //Q5
-find_if(const void *first,const void *last,size_t size,Predicate p );
-
+const void *find_if(const void *first,const void *last,size_t size,Predicate p );
+/*
 //Q6
 const void *find(const void *first , const void *last , size_t size , const void *value , Equal eq);
 

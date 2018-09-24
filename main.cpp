@@ -17,14 +17,15 @@ bool menor(const void *a ,const void *b)
 	return *static_cast<const int *>(a)   <   *static_cast<const int *>(b);//Pq tenho que comparar como sendo int?
 }
 
-/*bool par(void *a)
+bool par( const void *a)
 {
-	return (static_cast<int *>(a) % 2 == 0 );//achar o primeiro par
+	return *static_cast<const int *>(a) % 2 == 0 ;//achar o primeiro par
 }
-/*bool impar(void *a)
+bool impar(const void *a)
 {
-	return (static_cast<int *>(a) % 2 == 1 );//achar o primeiro impar
-}*/
+
+	return *static_cast<const int *>(a) % 2 == 1 ;//achar o primeiro impar
+}
 bool eq(void *a , void *b)
 {
 	return static_cast<int *>(a)   ==   static_cast<int *>(b);
@@ -32,14 +33,19 @@ bool eq(void *a , void *b)
 
 int main()
 {	
-	int A[]={0,-15,10,25,10};//,B[10];
+	int A[]={0,-15,12,25,10};
+	int B[]={72,51,23 ,15,94};
+	int C[]={-11,2,10,15,12,9};
+
+	printEspaco(1);
 	//Questão 1
 	//criarVetorAleatorio( begin(A) , sizeof(int) ,10);
 	std::cout << "Vetor: ";
 	printVetor(begin(A) , end(A));
-	auto result = (const int*) min(begin(A) , end(A) , sizeof(int) , menor);
-	std::cout << "Menor elemento do vetor é: " << *result << std::endl;
+	auto result_min = (const int*) min(begin(A) , end(A) , sizeof(int) , menor);
+	std::cout << "Menor elemento do vetor é: " << *result_min << std::endl;
 
+	printEspaco( 2);
 
 	//Questão 2
 	std::cout << "Vetor: ";
@@ -48,32 +54,31 @@ int main()
 	std::cout<<"Vetor revertido: \n";
 	printVetor(begin(A) , end(A));
 
-	/*
+	printEspaco(3); 
+
 	//Questão 3
-	criarVetorAleatorio( begin(A) , sizeof(int) ,10);
-	criarVetorAleatorio(begin(B) , sizeof(int) ,10);
 	std::cout << "Vetor que será copiado: ";
 	printVetor(begin(A) , end(A));
 	std::cout<<"Vetor aleatório: ";
 	printVetor(begin(B) , end(B));
-	auto copy = copy(begin(A) , end(A), begin(B), sizeof(int))
+	auto result_copy = (const int*)copy(begin(A) , end(A), begin(B), sizeof(int));
 	std::cout<<"Novo Vetor copiado\n";
 	printVetor(begin(B) , end(B));
 
-
+	
 	//Questão 4     //?Num sei fazer nao
 
-
+	printEspaco(5);
 	//Questão 5
-	criarVetorAleatorio( begin(A) , sizeof(int) ,10);
+	
 	std::cout << "Vetor: ";
-	printVetor(begin(A) , end(A));
-	auto par = find_if(begin(A) , end(A) , sizeof(int) , par);
-	std::cout << "Primeiro par do vetor: "<<par<<'\n';
-	auto par = find_if(begin(A) , end(A) , sizeof(int) , impar);
-	std::cout << "Primeiro impar do vetor: "<<impar<<'\n';
+	printVetor(begin(C) , end(C));
+	auto result_par = (const int*)find_if(begin(C) , end(C) , sizeof(int) , par);
+	std::cout << "Primeiro par do vetor: "<<*result_par<<'\n';
+	auto result_impar = (const int*)find_if(begin(C) , end(C) , sizeof(int) , impar);
+	std::cout << "Primeiro impar do vetor: "<<*result_impar<<'\n';
 
-
+/*
 	//Questão 6
 	criarVetorAleatorio( begin(A) , sizeof(int) ,10);;
 	std::cout << "Vetor: ";

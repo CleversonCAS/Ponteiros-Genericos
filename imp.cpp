@@ -9,6 +9,10 @@ typedef bool(Compare*)(const void *a, const void *b);
 typedef bool(Predicate*)(const void *a);
 typedef bool(Equal*)(const void *a, const void *b);
 */
+void printEspaco(int a)
+{
+	std::cout<<"\n\n_____________________________________________________________________\nQuestão: "<<a<<"\n\n";
+}
 void printVetor(int *first, int *last)
 {	
 	int *it = first;													//Imprime o vetor
@@ -41,7 +45,7 @@ const void  *min(void *first, void *last, size_t size , Compare cmp)
 
 	it+=size;
 	const byte *menor = it;
-	while(it != last)
+	while(it != last)////////////////quero parar na metade como q faz(?)
 	{
 		if(cmp(it , menor))
 		{
@@ -58,42 +62,46 @@ const void  *min(void *first, void *last, size_t size , Compare cmp)
 
 
 
-void reverse(void *first,void *last,size_t size)
+void reverse(void *first,void *last,size_t size)///////////Tá errado(?)
 {
 	byte *it = static_cast < byte*> (first);
+	//byte *i = static_cast < byte*> (first);
 	byte *it2= static_cast < byte*> (last);
 	it2-=size;
-	while(it!=it2)
+	byte tmp ;
+	while(it != it2)
 	{
-			//std::swap(*it, *it2);
-			memcpy(it, it2, size);
-			it+=size;
-			it2-=size;
+		tmp = *it;
+		*it = *it2;
+		*it2 = tmp;
+		//std::swap(it, it2);
+		//memcpy(it, it2, size);
+		it+=size;
+		it2-=size;
+		//std::cout << 
 	}
 }
 
-/*
-//Questão 3
-void *copy(const void *firstA, const void *lastA , const void *firstB , size_t size)
-	{
-	 	byte k= std::distance(static_cast <byte*> (firstA), static_cast <byte*> (lastA)) ;//??
-		byte *i = static_cast <byte*> (firstA);
-		byte *j = static_cast <byte*> (firstB);
-		for( ; i !=lastA ; i+size , j+size)
-		{
-			*j=*i;
 
-		}
-		/*while(i != lastA)
+//Questão 3
+const void *copy(  void *firstA,   void *lastA ,  void *firstB , size_t size)
+	{
+	 	
+		byte *i = static_cast < byte*> (firstA);
+		byte *j = static_cast < byte*> (firstB);
+		byte *p = static_cast < byte*> (lastA);
+		byte k= std::distance(i,p)/size;
+
+		while(i != lastA)
 		{
-			j*=*i;
+			memcpy(j, i, size);
 			i+=size; 
 			j+=size;
 
-		}*/
+		}
 
-		//return static_cast <byte*> (firstB)+k;//?
-/*	}
+		return firstB+k;//?
+	}
 
 
 //Questão 4
@@ -101,12 +109,13 @@ void *copy(const void *firstA, const void *lastA , const void *firstB , size_t s
 
 
 //Questão 5
-const void *find_if(const void *first,const void *last,size_t size,Predicate p )
+	
+const void *find_if( const void *first, const void *last,size_t size,Predicate p )
 {
-	byte *it = static_cast <byte*>(first);
+	const byte *it = static_cast <const byte*>(first);
 	while(it != last)
 	{
-		if(  p(*it)  )
+		if(  p(it)  )
 		{
 			return it;
 		}
@@ -115,7 +124,7 @@ const void *find_if(const void *first,const void *last,size_t size,Predicate p )
 	return it;
 }
 
-
+/*
 //Questão 6
 const void *find(const void *first , const void *last , size_t size , const void *value , Equal eq)
 {
