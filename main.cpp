@@ -11,6 +11,7 @@ using std::end;
 //Os ponteiro para função, aonde devo colocar?(No momento estão no .h)
 //E as função bool?(tão na main)
 //Em quais funções devo usar memcpy?
+
 bool menor(void *a , void *b)
 {
 	return static_cast<int *>(a)   <   static_cast<int *>(b);//Pq tenho que comparar como sendo int?
@@ -18,15 +19,15 @@ bool menor(void *a , void *b)
 
 bool par(void *a)
 {
-	return (static_cast<int *>(a) % 2 == 0 )//achar o primeiro par
+	return (static_cast<int *>(a) % 2 == 0 );//achar o primeiro par
 }
 bool impar(void *a)
 {
-	return (static_cast<int *>(a) % 2 == 1 )//achar o primeiro impar
+	return (static_cast<int *>(a) % 2 == 1 );//achar o primeiro impar
 }
 bool eq(void *a , void *b)
 {
-	return static_cast<int *>(a)   =   static_cast<int *>(b);
+	return static_cast<int *>(a)   ==   static_cast<int *>(b);
 }
 
 int main()
@@ -44,21 +45,21 @@ int main()
 	criarVetorAleatorio( begin(A) , sizeof(int) ,10);
 	std::cout << "Vetor: ";
 	printVetor(begin(A) , end(A) , sizeof(int));
-	reverse(begin(A) , end(A) , sizeof(int)
+	reverse(begin(A) , end(A) , sizeof(int));
 	std::cout<<"Vetor revertido: \n";
 	printVetor(begin(A) , end(A) , sizeof(int));
 
 
 	//Questão 3
 	criarVetorAleatorio( begin(A) , sizeof(int) ,10);
-	criarVetorAleatorio(begin(B) , sizeof(int) ,10
+	criarVetorAleatorio(begin(B) , sizeof(int) ,10)
 	std::cout << "Vetor que será copiado: ";
 	printVetor(begin(A) , end(A) , sizeof(int));
-	std::cout<<"Vetor aleatório: "
-	printVetor(begin(B) , vetor2.end() , sizeof(int));
+	std::cout<<"Vetor aleatório: ";
+	printVetor(begin(B) , end(B) , sizeof(int));
 	auto copy = copy(begin(A) , end(A), begin(B), sizeof(int))
 	std::cout<<"Novo Vetor copiado\n";
-	printVetor(begin(B) , vetor2.end() , sizeof(int));
+	printVetor(begin(B) , end(B) , sizeof(int));
 
 
 	//Questão 4     //?Num sei fazer nao
@@ -107,7 +108,7 @@ int main()
 	criarVetorAleatorio( begin(B) , sizeof(int) ,10);;
 	std::cout << "Vetor B: ";
 	printVetor(begin(B) , end(B) , sizeof(int));
-	auto equal1 = equal(begin(A) , end(A), begin(B), sizeof(int), eq )
+	auto equal1 = equal(begin(A) , end(A), begin(B), sizeof(int), eq );
 	std::cout<<"A == B? "<<equal1<<std::endl;
 
 	criarVetorAleatorio( begin(A) , sizeof(int) ,10);;
@@ -116,7 +117,7 @@ int main()
 	criarVetorAleatorio( begin(B) , sizeof(int) ,10);;
 	std::cout << "Vetor B: ";
 	printVetor(begin(B) , end(B) , sizeof(int));
-	auto equal2 = equal(begin(A) , end(A), begin(B), end(B) , sizeof(int) , eq)
+	auto equal2 = equal(begin(A) , end(A), begin(B), end(B) , sizeof(int) , eq);
 	std::cout<<"A == B? "<<equal1<<std::endl; 
 
 

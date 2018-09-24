@@ -2,6 +2,9 @@
 #include <algorithm>
 #include <iterator>
 #include "fun.h"
+using Compare = bool(Compare*)(const void *a, const void *b);
+using Predicate = bool(predic*)(const void *a);
+using Equal = bool(Equal*)(const void *a, const void *b);
 
 void printVetor(void *first, void *last, size_t size)
 {														//Imprime o vetor
@@ -28,7 +31,7 @@ void criarVetorAleatorio(void *first, size_t size , int tam)
 
 
 //Questão 1
-void  *min(void *first, void *last, size_t size , compare cmp)
+void  *min(void *first, void *last, size_t size , Compare cmp)
 {
 	//convertendo para poder usar aritimética de ponteiros
 	const byte *it = static_cast <const byte*> (first);
@@ -61,7 +64,7 @@ void reverse(void *first,void *last,size_t size)
 
 //Questão 3
 void *copy(const void *firstA, const void *lastA , const void *firstB , size_t size)
-	{	
+	{
 	 	byte k= std::distance(static_cast <byte*> (firstA), static_cast <byte*> (lastA) ;//??
 		byte *i = static_cast <byte*> (firstA);
 		byte *j = static_cast <byte*> (firstB);

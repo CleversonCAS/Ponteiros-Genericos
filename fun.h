@@ -1,9 +1,14 @@
 #ifndef FUN_H
 #define FUN_H
 typedef unsigned char byte;
-using compare = bool (*Compare)(const void *a, const void *b);
-using Predicate = bool (*predic)(const void *a);
-using Equal = bool (*Equal)(const void *a, const void *b);
+using  bool(*Compare)(const void *a, const void *b);
+using  bool(*Predicate*)(const void *a);
+using  bool(*Equal*)(const void *a, const void *b);
+
+void criarVetorAleatorio(void *first, size_t size , int tam);
+
+void printVetor(void *first, void *last, size_t size)
+
 //Q1
 void min(void *first, void *last, size_t size, Compare cmp);
 
@@ -27,7 +32,7 @@ bool any_of(const void *first , const void *last , size_t size , Predicate p);
 bool none_of(const void *first , const void *last , size_t size ,  Predicate p );
 
 //Q8
-bool equal(const void *first , const void *last ,void *first 2, size_t size , Equal eq);
+bool equal(const void *first , const void *last ,void *first2, size_t size , Equal eq);
 bool equal(const void *first , const void *last ,void *first2, void *last2, size_t size , Equal eq);
 
 //Q9
