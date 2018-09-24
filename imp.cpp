@@ -1,43 +1,46 @@
 #include <iostream>
 #include <algorithm>
 #include <iterator>
+#include <cstdio>
+#include <string.h>
 #include "fun.h"
-using Compare = bool(Compare*)(const void *a, const void *b);
-using Predicate = bool(predic*)(const void *a);
-using Equal = bool(Equal*)(const void *a, const void *b);
-
-void printVetor(void *first, void *last, size_t size)
-{														//Imprime o vetor
-	const byte *it = static_cast <const byte*> (first);
-	it+=size;
-	for(it=first ; it!=last ; it+size)
+/*
+typedef bool(Compare*)(const void *a, const void *b);
+typedef bool(Predicate*)(const void *a);
+typedef bool(Equal*)(const void *a, const void *b);
+*/
+void printVetor(int *first, int *last)
+{	
+	int *it = first;													//Imprime o vetor
+	for(it=first ; it!=last ; it++)
 	{
-		cout<<*it<<' ';
+		std::cout<<*it<<' ';
 	}
-	cout<<endl;
+	std::cout<<std::endl;
 }
 
-void criarVetorAleatorio(void *first, size_t size , int tam)
+/*void criarVetorAleatorio(void *first, size_t size , int tam)
 {
 	srand(time(NULL));												//Cria o Vetor int, Sabosta funciona?
-	const byte *it = static_cast <byte>(first);
+	const byte *it = static_cast <byte*>(first);
 
-	while(it != tam)
+	while(it != static_cast<byte*>(tam))
 	{
 		first[it] = srand() % 50; //pode isso?
 		it+=size;
 	}
 }
+*/
 
 
 //Questão 1
-void  *min(void *first, void *last, size_t size , Compare cmp)
+const void  *min(void *first, void *last, size_t size , Compare cmp)
 {
 	//convertendo para poder usar aritimética de ponteiros
 	const byte *it = static_cast <const byte*> (first);
 
 	it+=size;
-	byte *menor = it;
+	const byte *menor = it;
 	while(it != last)
 	{
 		if(cmp(it , menor))
@@ -51,21 +54,29 @@ void  *min(void *first, void *last, size_t size , Compare cmp)
 
 
 //Questão 2
+
+
+
+
 void reverse(void *first,void *last,size_t size)
 {
-	const byte *it = static_cast <const byte*> (first);
-		last--;
-	for(  ; it<=last; it+size,last--)
+	byte *it = static_cast < byte*> (first);
+	byte *it2= static_cast < byte*> (last);
+	it2-=size;
+	while(it!=it2)
 	{
-			std::swap(*it, *last);
+			//std::swap(*it, *it2);
+			memcpy(it, it2, size);
+			it+=size;
+			it2-=size;
 	}
 }
 
-
+/*
 //Questão 3
 void *copy(const void *firstA, const void *lastA , const void *firstB , size_t size)
 	{
-	 	byte k= std::distance(static_cast <byte*> (firstA), static_cast <byte*> (lastA) ;//??
+	 	byte k= std::distance(static_cast <byte*> (firstA), static_cast <byte*> (lastA)) ;//??
 		byte *i = static_cast <byte*> (firstA);
 		byte *j = static_cast <byte*> (firstB);
 		for( ; i !=lastA ; i+size , j+size)
@@ -81,8 +92,8 @@ void *copy(const void *firstA, const void *lastA , const void *firstB , size_t s
 
 		}*/
 
-		return static_cast <byte*> (firstB)+k;//?
-	}
+		//return static_cast <byte*> (firstB)+k;//?
+/*	}
 
 
 //Questão 4
@@ -202,5 +213,5 @@ bool equal(const void *first , const void *last ,void *first2, void *last2, size
 void *unique(const void *first , const void *last , size_t size , Equal eq)
 {
 	
-}
+}*/
 

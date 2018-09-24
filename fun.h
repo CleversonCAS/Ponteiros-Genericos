@@ -1,22 +1,24 @@
 #ifndef FUN_H
 #define FUN_H
+
+#include <cstdlib>
 typedef unsigned char byte;
-using  bool(*Compare)(const void *a, const void *b);
-using  bool(*Predicate*)(const void *a);
-using  bool(*Equal*)(const void *a, const void *b);
+typedef bool(*Compare)(const void *, const void *);
+typedef bool(*Predicate)(const void *);
+typedef bool(*Equal)(const void *, const void *);
 
-void criarVetorAleatorio(void *first, size_t size , int tam);
 
-void printVetor(void *first, void *last, size_t size)
+//void criarVetorAleatorio(void *first, size_t size , int tam);
 
+void printVetor(int *first, int *last);
 //Q1
-void min(void *first, void *last, size_t size, Compare cmp);
+const void *min(void *first, void *last, size_t size, Compare cmp);
 
 //Q2
 void reverse(void *first,void *last,size_t size);
 
 //Q3
-void *copy(const void *firstA, const void *lastA , const void *firstB , size_t size);
+/*void *copy(const void *firstA, const void *lastA , const void *firstB , size_t size);
 
 //Q4
 
@@ -37,5 +39,5 @@ bool equal(const void *first , const void *last ,void *first2, void *last2, size
 
 //Q9
 void *unique(const void *first , const void *last , size_t size , Equal eq);
-
+*/
 #endif 
