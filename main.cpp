@@ -4,6 +4,7 @@
 #include <ctime> //rand
 #include <vector>
 #include "fun.h"
+#include <fstream>
 
 using std::begin;
 using std::end;
@@ -70,7 +71,9 @@ int main()
 
 	printEspaco(5);
 	//Questão 5
-	
+	std::ofstream outFile;
+	outFile.open("teste.txt");
+	outFile<<"AAAAAAAAAA"<<std::endl;
 	std::cout << "Vetor: ";
 	printVetor(begin(C) , end(C));
 	auto result_par = (const int*)find_if(begin(C) , end(C) , sizeof(int) , par);
