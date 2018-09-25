@@ -5,7 +5,7 @@
 typedef char byte;
 typedef bool(*Compare)(const void *, const void *);
 typedef bool(*Predicate)(const void *);
-typedef bool(*Equal)(const void *, const void *);
+typedef bool(*Equal)( const void *, const void *);
 
 
 //void criarVetorAleatorio(void *first, size_t size , int tam);
@@ -26,7 +26,7 @@ const void *copy(  void *firstA,   void *lastA ,  void *firstB , size_t size);
 const void *find_if(const void *first,const void *last,size_t size,Predicate p );
 
 //Q6
-const void *find(const void *first , const void *last , size_t size , const void *value , Equal eq);
+void *find(void *first , void *last , size_t size ,void *value , Equal eq);
 /*
 //Q7
 bool all_of(const void *first , const void *last , size_t size,Predicate p);

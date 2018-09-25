@@ -121,17 +121,20 @@ const void *find_if( const void *first, const void *last,size_t size,Predicate p
 		}
 		it+=size;
 	}
-	return it;
+	p(it);
+	return last;//////////////////////////////////////Retorna lixo(?)
 }
 
 
 //Questão 6
-const void *find(const void *first , const void *last , size_t size , const void *value , Equal eq)
+void *find(void *first , void *last , size_t size , void *value , Equal eq)
 {
 	byte *it = static_cast<byte*>(first);
+	//byte valor = static_cast<byte>(value);
 	while(it != last)
 	{
-		if(eq(*it,*value))
+	
+		if(eq(it,value))
 		{
 			return it;
 		}

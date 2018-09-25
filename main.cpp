@@ -27,9 +27,9 @@ bool impar(const void *a)
 
 	return *static_cast<const int *>(a) % 2 == 1 ;//achar o primeiro impar//Se for negativo, retorna o próximo positivo(?)
 }
-bool eq(void *a , void *b)
+bool eq(const void *a ,const void *b)
 {
-	return static_cast<int *>(a)   ==   static_cast<int *>(b);
+	return *static_cast<const int *>(a)   ==   *static_cast<const int *>(b);
 }
 
 int main()
@@ -37,6 +37,7 @@ int main()
 	int A[]={0,-15,12,25,10};
 	int B[]={72,51,23 ,15,94};
 	int C[]={-11,-2,10,15,12,9};
+	int D[]={2,4,6,8,10,12,14,16};
 
 	printEspaco(1);
 	//Questão 1
@@ -75,20 +76,21 @@ int main()
 	outFile.open("teste.txt");
 	outFile<<"AAAAAAAAAA"<<std::endl;
 	std::cout << "Vetor: ";
-	printVetor(begin(C) , end(C));
-	auto result_par = (const int*)find_if(begin(C) , end(C) , sizeof(int) , par);
+	printVetor(begin(D) , end(D));
+	auto result_par = (const int*)find_if(begin(D) , end(D) , sizeof(int) , par);
 	std::cout << "Primeiro par do vetor: "<<*result_par<<'\n';
-	auto result_impar = (const int*)find_if(begin(C) , end(C) , sizeof(int) , impar);
+	auto result_impar = (const int*)find_if(begin(D) , end(D) , sizeof(int) , impar);
 	std::cout << "Primeiro impar do vetor: "<<*result_impar<<'\n';
 
-
+	printEspaco(6);
 	//Questão 6
-	criarVetorAleatorio( begin(A) , sizeof(int) ,10);;
 	std::cout << "Vetor: ";
 	printVetor(begin(A) , end(A));
-	auto find = find(begin(A) , end(A) , sizeof(int) , 15 , eq);
-	std::cout << "Valor retornado(Se não encontrado, retornará o ultimo elemento): "<<find<<'\n';
-
+	int *p;
+	*p=12;
+	auto result_find = (int*)find(begin(A) , end(A) , sizeof(int) , p , eq);
+	std::cout << "Valor retornado(Se não encontrado, retornará o ultimo elemento): "<<*result_find<<'\n';
+std::cout << "Valor retornado(Se não encontrado, retornará o ultimo elemento): ";
 /*
 	//Questão 7
 	criarVetorAleatorio( begin(A) , sizeof(int) ,10);;
