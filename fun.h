@@ -24,10 +24,10 @@ const void *copy(  void *firstA,   void *lastA ,  void *firstB , size_t size);
 //Q4
 //Q5
 const void *find_if(const void *first,const void *last,size_t size,Predicate p );
-/*
+
 //Q6
 const void *find(const void *first , const void *last , size_t size , const void *value , Equal eq);
-
+/*
 //Q7
 bool all_of(const void *first , const void *last , size_t size,Predicate p);
 bool any_of(const void *first , const void *last , size_t size , Predicate p);

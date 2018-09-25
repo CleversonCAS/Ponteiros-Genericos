@@ -62,7 +62,7 @@ const void  *min(void *first, void *last, size_t size , Compare cmp)
 
 
 
-void reverse(void *first,void *last,size_t size)///////////Tá errado(?)
+void reverse(void *first,void *last,size_t size)///////////Tá errado(?)//AS VEZES DÁ CERTO (com vetor C dá errado)
 {
 	byte *it = static_cast < byte*> (first);
 	//byte *i = static_cast < byte*> (first);
@@ -76,8 +76,8 @@ void reverse(void *first,void *last,size_t size)///////////Tá errado(?)
 		*it2 = tmp;
 		//std::swap(it, it2);
 		//memcpy(it, it2, size);
-		it+=size;
-		it2-=size;
+		it++;								//Se colocar it+=size dá falha de segmentação 
+		it2--;
 		//std::cout << 
 	}
 }
@@ -124,7 +124,7 @@ const void *find_if( const void *first, const void *last,size_t size,Predicate p
 	return it;
 }
 
-/*
+
 //Questão 6
 const void *find(const void *first , const void *last , size_t size , const void *value , Equal eq)
 {
@@ -140,7 +140,7 @@ const void *find(const void *first , const void *last , size_t size , const void
 	return it;
 }
 
-
+/*
 //Questão 7
 bool all_of(const void *first , const void *last , size_t size,Predicate p)
 {

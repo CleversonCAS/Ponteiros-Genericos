@@ -25,7 +25,7 @@ bool par( const void *a)
 bool impar(const void *a)
 {
 
-	return *static_cast<const int *>(a) % 2 == 1 ;//achar o primeiro impar
+	return *static_cast<const int *>(a) % 2 == 1 ;//achar o primeiro impar//Se for negativo, retorna o próximo positivo(?)
 }
 bool eq(void *a , void *b)
 {
@@ -36,7 +36,7 @@ int main()
 {	
 	int A[]={0,-15,12,25,10};
 	int B[]={72,51,23 ,15,94};
-	int C[]={-11,2,10,15,12,9};
+	int C[]={-11,-2,10,15,12,9};
 
 	printEspaco(1);
 	//Questão 1
@@ -48,12 +48,12 @@ int main()
 
 	printEspaco( 2);
 
-	//Questão 2
+	//Questão 2																	//Está imprimindo números "aleatórios" em alguns caso
 	std::cout << "Vetor: ";
-	printVetor(begin(A) , end(A));
-	reverse(begin(A) , end(A) , sizeof(int));
+	printVetor(begin(B) , end(B));
+	reverse(begin(B) , end(B) , sizeof(int));
 	std::cout<<"Vetor revertido: \n";
-	printVetor(begin(A) , end(A));
+	printVetor(begin(B) , end(B));
 
 	printEspaco(3); 
 
@@ -81,7 +81,7 @@ int main()
 	auto result_impar = (const int*)find_if(begin(C) , end(C) , sizeof(int) , impar);
 	std::cout << "Primeiro impar do vetor: "<<*result_impar<<'\n';
 
-/*
+
 	//Questão 6
 	criarVetorAleatorio( begin(A) , sizeof(int) ,10);;
 	std::cout << "Vetor: ";
@@ -89,7 +89,7 @@ int main()
 	auto find = find(begin(A) , end(A) , sizeof(int) , 15 , eq);
 	std::cout << "Valor retornado(Se não encontrado, retornará o ultimo elemento): "<<find<<'\n';
 
-
+/*
 	//Questão 7
 	criarVetorAleatorio( begin(A) , sizeof(int) ,10);;
 	std::cout << "Vetor: ";
