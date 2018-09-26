@@ -34,13 +34,13 @@ bool eq(const void *a ,const void *b)
 
 int main()
 {	
-	int A[]={0,-15,12,25,10};
+	int A[]={0,-15,12,12,-15,25,10};
 	int B[]={72,51,23 ,15,94};
 	int C[]={-11,-2,10,15,12,9};
 	int D[]={2,4,6,8,10,12,14,16};
 
 	printEspaco(1);
-	//Questão 1
+	//Questão 1 OK
 	//criarVetorAleatorio( begin(A) , sizeof(int) ,10);
 	std::cout << "Vetor: ";
 	printVetor(begin(A) , end(A));
@@ -49,7 +49,7 @@ int main()
 
 	printEspaco( 2);
 
-	//Questão 2																	//Está imprimindo números "aleatórios" em alguns caso
+	//Questão 2		OK(???)//testar com outros vetores															//Está imprimindo números "aleatórios" em alguns caso
 	std::cout << "Vetor: ";
 	printVetor(begin(B) , end(B));
 	reverse(begin(B) , end(B) , sizeof(int));
@@ -58,7 +58,7 @@ int main()
 
 	printEspaco(3); 
 
-	//Questão 3
+	//Questão OK
 	std::cout << "Vetor que será copiado: ";
 	printVetor(begin(A) , end(A));
 	std::cout<<"Vetor aleatório: ";
@@ -71,7 +71,7 @@ int main()
 	//Questão 4     //?Num sei fazer nao
 
 	printEspaco(5);
-	//Questão 5
+	//Questão 5 OK
 	std::ofstream outFile;
 	outFile.open("teste.txt");
 	outFile<<"AAAAAAAAAA"<<std::endl;
@@ -81,56 +81,55 @@ int main()
 	std::cout << "Primeiro par do vetor: "<<*result_par<<'\n';
 	auto result_impar = (const int*)find_if(begin(D) , end(D) , sizeof(int) , impar);
 	std::cout << "Primeiro impar do vetor: "<<*result_impar<<'\n';
+	std::cout << "PS: Se não encontrado retorna o ultimo elemento\n";
+
 
 	printEspaco(6);
-	//Questão 6
+	//Questão 6 OK
 	std::cout << "Vetor: ";
 	printVetor(begin(A) , end(A));
-	int *p;
-	*p=12;
-	auto result_find = (int*)find(begin(A) , end(A) , sizeof(int) , p , eq);
+	int *p,a=12;//Necessário, pois a função tem como parametro um ponteiro
+	p=&a;
+	std::cout << *p<<'\n';	
+	auto result_find = (int*)find(begin(A) , end(A) , sizeof(int) , p , eq);//Acontece falha de segmentação (?)
 	std::cout << "Valor retornado(Se não encontrado, retornará o ultimo elemento): "<<*result_find<<'\n';
-std::cout << "Valor retornado(Se não encontrado, retornará o ultimo elemento): ";
-/*
-	//Questão 7
-	criarVetorAleatorio( begin(A) , sizeof(int) ,10);;
-	std::cout << "Vetor: ";
-	printVetor(begin(A) , end(A));
-	auto  all_of= all_of(begin(A) , end(A) , sizeof(int) , par);////////////////
-	std::cout<<"Todos são pares?  "<<all_of<<std::endl;
-	criarVetorAleatorio( begin(A) , sizeof(int) ,10);;
-	std::cout << "Vetor: ";
-	printVetor(begin(A) , end(A));
-	auto any_of = any_of(begin(A) , end(A) , sizeof(int) , par);////////////////
-	std::cout<<"Algum é par?  "<<any_of<<std::endl;
-	criarVetorAleatorio( begin(A) , sizeof(int) ,10);;
-	std::cout << "Vetor: ";
-	printVetor(begin(A) , end(A));
-	auto none_of = none_of(begin(A) , end(A) , sizeof(int) , par);////////////////
-	std::cout<<"Nenhum é par?  "<<none_of<<std::endl;
 
 
-	//Questão 8
-	criarVetorAleatorio( begin(A) , sizeof(int) ,10);;
+	printEspaco(7);
+	//Questão 7 OK
+	std::cout << "Vetor: ";
+	printVetor(begin(D) , end(D));
+	auto  result_all_of= all_of(begin(D) , end(D) , sizeof(int) , par);////////////////
+	std::cout<<"Todos são pares?  "<<result_all_of<<std::endl;
+	std::cout << "Vetor: ";
+	printVetor(begin(D) , end(D));
+	auto result_any_of = any_of(begin(D) , end(D) , sizeof(int) , par);////////////////
+	std::cout<<"Algum é par?  "<<result_any_of<<std::endl;
+	std::cout << "Vetor: ";
+	printVetor(begin(D) , end(D));
+	auto result_none_of = none_of(begin(D) , end(D), sizeof(int) , par);////////////////
+	std::cout<<"Nenhum é par?  "<<result_none_of<<std::endl;
+
+
+	printEspaco(8);	
+	//Questão 8 OK
 	std::cout << "Vetor A: ";
 	printVetor(begin(A) , end(A));
-	criarVetorAleatorio( begin(B) , sizeof(int) ,10);;
 	std::cout << "Vetor B: ";
 	printVetor(begin(B) , end(B));
-	auto equal1 = equal(begin(A) , end(A), begin(B), sizeof(int), eq );
-	std::cout<<"A == B? "<<equal1<<std::endl;
+	auto result_equal_1 = equal(begin(A) , end(A), begin(B), sizeof(int), eq );
+	std::cout<<"A == B? "<<result_equal_1<<std::endl;
 
-	criarVetorAleatorio( begin(A) , sizeof(int) ,10);;
+
 	std::cout << "Vetor A: ";
 	printVetor(begin(A) , end(A));
-	criarVetorAleatorio( begin(B) , sizeof(int) ,10);;
 	std::cout << "Vetor B: ";
-	printVetor(begin(B) , end(B));
-	auto equal2 = equal(begin(A) , end(A), begin(B), end(B) , sizeof(int) , eq);
-	std::cout<<"A == B? "<<equal1<<std::endl; 
+	printVetor(begin(C) , end(C));
+	auto result_equal_2 = equal(begin(A) , end(A), begin(C), end(C) , sizeof(int) , eq);
+	std::cout<<"A == B? "<<result_equal_2<<std::endl; 
 
-
-	//Questão 9
+	/*
+	//Questão 9 // comoquifaz(?)
 
 
 	//Questão 10

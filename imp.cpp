@@ -121,8 +121,7 @@ const void *find_if( const void *first, const void *last,size_t size,Predicate p
 		}
 		it+=size;
 	}
-	p(it);
-	return last;//////////////////////////////////////Retorna lixo(?)
+	return it-size;//////////////////////////////////////Retorna lixo(?)
 }
 
 
@@ -140,19 +139,19 @@ void *find(void *first , void *last , size_t size , void *value , Equal eq)
 		}
 		it+=size;
 	}
-	return it;
+	return it-size;
 }
 
-/*
+
 //Questão 7
 bool all_of(const void *first , const void *last , size_t size,Predicate p)
 {
-	byte *it = static_cast <byte*>(first);
+	const byte *it = static_cast <const byte*>(first);
 	while(it != last)
 	{
-		if(  !(p(*it))  )
+		if(  !(p(it))  )
 		{
-			return false
+			return false;
 		}
 		it+=size;
 	}
@@ -160,26 +159,26 @@ bool all_of(const void *first , const void *last , size_t size,Predicate p)
 }
 bool any_of(const void *first , const void *last , size_t size , Predicate p)
 {
-	byte *it = static_cast <byte*>(first);
+	const byte *it = static_cast <const byte*>(first);
 	while(it != last)
 	{
-		if(  p(*it)  )
+		if(  p(it)  )
 		{
-			return true
+			return true;
 		}
 		it+=size;
 	}
 	return false;
 }
-}
+
 bool none_of(const void *first , const void *last , size_t size ,  Predicate p )
 {
-	byte *it = static_cast <byte*>(first);
+	const byte *it = static_cast <const byte*>(first);
 	while(it != last)
 	{
-		if(  p(*it)  )
+		if(  p(it)  )
 		{
-			return false
+			return false;
 		}
 		it+=size;
 	}
@@ -190,13 +189,13 @@ bool none_of(const void *first , const void *last , size_t size ,  Predicate p )
 //Questão 8
 bool equal(const void *first , const void *last ,void *first2, size_t size , Equal eq)
 {
-	byte *it = static_cast<byte*>(first);
-	byte *it2 = static_cast<byte*>(first2);
+	const byte *it = static_cast<const byte*>(first);
+	const byte *it2 = static_cast<const byte*>(first2);
 	while(it != last)
 	{
-		if(!(eq(*it,*it2))
+		if(!(eq(it,it2)))
 		{
-			return false
+			return false;
 		}
 		it+=size;
 		it2+=size;
@@ -206,13 +205,13 @@ bool equal(const void *first , const void *last ,void *first2, size_t size , Equ
 
 bool equal(const void *first , const void *last ,void *first2, void *last2, size_t size , Equal eq)
 {
-	byte *it = static_cast<byte*>(first);
-	byte *it2 = static_cast<byte*>(first2);
+	const byte *it = static_cast<const byte*>(first);
+	const byte *it2 = static_cast<const byte*>(first2);
 	while(it != last or it2!=last2)
 	{
-		if(!(eq(*it,*it2))
+		if(!(eq(it,it2)))
 		{
-			return false
+			return false;
 		}
 		it+=size;
 		it2+=size;
@@ -222,8 +221,32 @@ bool equal(const void *first , const void *last ,void *first2, void *last2, size
 
 
 //Questão 9 //?
-void *unique(const void *first , const void *last , size_t size , Equal eq)
+void *unique(void *first ,void *last , size_t size , Equal eq)
 {
-	
-}*/
+
+}	
+
+//Questão 11
+void sort( void* first , void *last , size_t num, size_t size, Compare cmp)
+{
+	byte *left=static_cast<byte*>(first);
+	byte *right=static_cast<byte*>(last);
+	byte tmp;
+	while(right!=first)
+	{
+		while(left!=right)
+		{			
+			if(cmp(left,left+size))
+			{
+			tmp = *left;
+			*left = *left;
+			*left[++size] = tmp;
+			//std::swap(left, left+size);
+			//memcpy(left, left+size, size);							//Se colocar left+=size dá falha de segmentação 
+			left++;
+			}
+		}
+		right--;		
+	}
+}
 

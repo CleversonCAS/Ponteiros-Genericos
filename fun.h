@@ -27,7 +27,7 @@ const void *find_if(const void *first,const void *last,size_t size,Predicate p )
 
 //Q6
 void *find(void *first , void *last , size_t size ,void *value , Equal eq);
-/*
+
 //Q7
 bool all_of(const void *first , const void *last , size_t size,Predicate p);
 bool any_of(const void *first , const void *last , size_t size , Predicate p);
@@ -38,6 +38,11 @@ bool equal(const void *first , const void *last ,void *first2, size_t size , Equ
 bool equal(const void *first , const void *last ,void *first2, void *last2, size_t size , Equal eq);
 
 //Q9
-void *unique(const void *first , const void *last , size_t size , Equal eq);
-*/
+void *unique(void *first ,void *last , size_t size , Equal eq);
+
+//10
+
+//11
+void sort( void* first , void *last , size_t num, size_t size, Compare cmp);
+
 #endif 
