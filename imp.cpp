@@ -40,7 +40,7 @@ void printVetor(int *first, int *last)
 
 
 //Questão 1
-const void  *min(void *first, void *last, size_t size , Compare cmp)
+const void  *min(const void *first, const void *last, size_t size , Compare cmp)
 {
 	//convertendo para poder usar aritimética de ponteiros
 	const byte *it = static_cast <const byte*> (first);
@@ -86,15 +86,17 @@ void reverse(void *first,void *last,size_t size)///////////Tá errado(?)//AS VEZ
 
 
 //Questão 3
-const void *copy(  void *firstA,   void *lastA ,  void *firstB , size_t size)
+void *copy(const  void *first,const   void *last ,  void *d_first, size_t size)
 	{
-	 	
-		byte *i = static_cast < byte*> (firstA);
-		byte *j = static_cast < byte*> (firstB);
-		byte *p = static_cast < byte*> (lastA);
+	 	void *firsta = const_cast < void*> (first);
+	 	void *lasta = const_cast <  void*> (last);
+	 	void *firstb = const_cast <  void*> (d_first);
+		byte *i = static_cast < byte*> (firsta);
+		byte *j = static_cast < byte*> (firstb);
+		byte *p = static_cast < byte*> (lasta);
 		byte k= std::distance(i,p)/size;
 
-		while(i != lastA)
+		while(i != lasta)
 		{
 			memcpy(j, i, size);
 			i+=size; 
@@ -102,7 +104,7 @@ const void *copy(  void *firstA,   void *lastA ,  void *firstB , size_t size)
 
 		}
 
-		return firstB+static_cast < byte> (k);
+		return firstb+static_cast < byte>(k);
 	}
 
 

@@ -9,6 +9,7 @@
 using std::begin;
 using std::end;
 //namespace graal;
+//namespace graal;
 //#include "imp.cpp"
 //Os ponteiro para função, aonde devo colocar?(No momento estão no .h)
 //E as função bool?(tão na main)
@@ -66,6 +67,7 @@ int main()
 	printVetor(begin(B) , end(B));
 	auto result_copy = (const int*)copy(begin(A) , end(A), begin(B), sizeof(int));
 	std::cout<<"Novo Vetor copiado\n";
+	std::cout<<*result_copy<<'\n';
 	printVetor(begin(B) , end(B));
 
 	

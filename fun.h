@@ -2,25 +2,24 @@
 #define FUN_H
 
 #include <cstdlib>
+//namespace graal{
 typedef char byte;
 typedef bool(*Compare)(const void *, const void *);
 typedef bool(*Predicate)(const void *);
 typedef bool(*Equal)( const void *, const void *);
-
 
 //void criarVetorAleatorio(void *first, size_t size , int tam);
 void printEspaco(int a);
 
 void printVetor(int *first, int *last);
 //Q1
-const void *min(void *first, void *last, size_t size, Compare cmp);
+const void  *min(const void *first, const void *last, size_t size , Compare cmp);
 
 //Q2
 void reverse(void *first,void *last,size_t size);
 
 //Q3
-const void *copy(  void *firstA,   void *lastA ,  void *firstB , size_t size);
-
+void *copy(const  void *first,const   void *last ,  void *d_first, size_t size);
 //Q4
 //Q5
 const void *find_if(const void *first,const void *last,size_t size,Predicate p );
@@ -44,5 +43,6 @@ void *unique(void *first ,void *last , size_t size , Equal eq);
 
 //11
 void sort( void* first , void *last ,  size_t size, Compare cmp);
+//}
 
 #endif 
