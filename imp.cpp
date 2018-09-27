@@ -4,11 +4,13 @@
 #include <cstdio>
 #include <string.h>
 #include "fun.h"
+#include <vector>
 /*
 typedef bool(Compare*)(const void *a, const void *b);
 typedef bool(Predicate*)(const void *a);
 typedef bool(Equal*)(const void *a, const void *b);
 */
+
 void printEspaco(int a)
 {
 	std::cout<<"\n\n_____________________________________________________________________\nQuestão: "<<a<<"\n\n";
@@ -100,7 +102,7 @@ const void *copy(  void *firstA,   void *lastA ,  void *firstB , size_t size)
 
 		}
 
-		return firstB+k;//?
+		return firstB+static_cast < byte> (k);
 	}
 
 
@@ -223,30 +225,42 @@ bool equal(const void *first , const void *last ,void *first2, void *last2, size
 //Questão 9 //?
 void *unique(void *first ,void *last , size_t size , Equal eq)
 {
+	byte *i= static_cast<byte*>(first);
+	byte *j= static_cast<byte*>(last);
+	byte *a= static_cast<byte*>(last);
 
-}	
-
-//Questão 11
-void sort( void* first , void *last , size_t num, size_t size, Compare cmp)
-{
-	byte *left=static_cast<byte*>(first);
-	byte *right=static_cast<byte*>(last);
-	byte tmp;
-	while(right!=first)
+	for(/**/; i<=a ; i+=size )
 	{
-		while(left!=right)
-		{			
-			if(cmp(left,left+size))
+		for(j=static_cast<byte*>(first) ; j<=i ; j+=size)
+		{
+			if (eq(i,j))
 			{
-			tmp = *left;
-			*left = *left;
-			*left[++size] = tmp;
-			//std::swap(left, left+size);
-			//memcpy(left, left+size, size);							//Se colocar left+=size dá falha de segmentação 
-			left++;
+				memmove( i , i+size , std::distance(i,static_cast<byte*>(last)));
+				a-=size;
 			}
 		}
-		right--;		
+	}
+	return a;
+
+}	
+void sort( void* first , void *last , size_t size, Compare cmp)
+{
+	byte *i = static_cast< byte *>(first);
+	byte *j = static_cast< byte *>(first);
+	byte *p = static_cast< byte *>(last);
+
+	int aux;
+
+	for(; i < last-size; i+=size)
+	{
+		for(j = i+size; j < last; j+=size)
+		{
+			if(cmp(j,i))
+			{
+				aux = *j;
+				*j = *i;
+				*i = aux;
+			}
+		}
 	}
 }
-

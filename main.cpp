@@ -8,6 +8,7 @@
 
 using std::begin;
 using std::end;
+//namespace graal;
 //#include "imp.cpp"
 //Os ponteiro para função, aonde devo colocar?(No momento estão no .h)
 //E as função bool?(tão na main)
@@ -37,8 +38,8 @@ int main()
 	int A[]={0,-15,12,12,-15,25,10};
 	int B[]={72,51,23 ,15,94};
 	int C[]={-11,-2,10,15,12,9};
-	int D[]={2,4,6,8,10,12,14,16};
-
+	int D[]={2,2,2,4,6,8,12,5,5,5,5,5,5,5,5,10,5,12,14,8,10,16,16};
+	int E[]={5,7,1,9,10,2,8,3,4,6};
 	printEspaco(1);
 	//Questão 1 OK
 	//criarVetorAleatorio( begin(A) , sizeof(int) ,10);
@@ -121,22 +122,34 @@ int main()
 	std::cout<<"A == B? "<<result_equal_1<<std::endl;
 
 
-	std::cout << "Vetor A: ";
+	std::cout << "Vetor A: "; 
 	printVetor(begin(A) , end(A));
 	std::cout << "Vetor B: ";
 	printVetor(begin(C) , end(C));
 	auto result_equal_2 = equal(begin(A) , end(A), begin(C), end(C) , sizeof(int) , eq);
 	std::cout<<"A == B? "<<result_equal_2<<std::endl; 
 
-	/*
-	//Questão 9 // comoquifaz(?)
+
+	
+	//Questão 9 
+	printEspaco(9);
+	std::cout << "Vetor: ";
+	printVetor(begin(D) , end(D));
+	int * fin = (int*)unique(begin(D) , end(D), sizeof(int),eq);
+	std::cout<<"Vetor arrumado: ";
+	printVetor(begin(D) , fin);
 
 
 	//Questão 10
 
-
-	//Questão 11*/
-
+	
+	printEspaco(11);
+	//Questão 11
+	std::cout << "Vetor: ";
+	printVetor(begin(E) , end(E));
+	sort(begin(E) , end(E), sizeof(int),menor);
+	std::cout<<"Vetor ordenado: ";
+	printVetor(begin(E) , end(E));
 
 
 

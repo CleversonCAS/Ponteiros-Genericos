@@ -43,6 +43,6 @@ void *unique(void *first ,void *last , size_t size , Equal eq);
 //10
 
 //11
-void sort( void* first , void *last , size_t num, size_t size, Compare cmp);
+void sort( void* first , void *last ,  size_t size, Compare cmp);
 
 #endif 
